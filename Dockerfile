@@ -31,7 +31,8 @@ COPY ./start.sh /start.sh
 COPY ./catflag /home/ctf/bin/sh
 
 RUN touch /home/ctf/bin/pwn && \
-    chmod +x /home/ctf/bin/pwn
+    chmod +x /home/ctf/bin/pwn && \
+    chmod +x /home/ctf/bin/sh
 RUN echo "Blocked by ctf_xinetd" > /etc/banner_fail
 
 RUN chmod +x /start.sh
