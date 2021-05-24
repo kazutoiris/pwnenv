@@ -2,17 +2,14 @@ FROM amd64/ubuntu:focal
 
 # ENV DEBIAN_FRONTEND noninteractive
 # ENV TV Asia/Shanghai
-RUN apt-get update 
-# apt-get install -y tzdata
-# ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-# dpkg-reconfigure -f noninteractive tzdata
-
-RUN apt-get install -y lib32z1 xinetd
-#  vim curl inetutils-ping net-tools dnsutils
-
+RUN apt-get update && apt-get -y dist-upgrade && \
+    apt-get install -y lib32z1 xinetd
 RUN useradd -m ctf
 
-RUN cp -dR /usr/lib* /home/ctf
+WORKDIR /home/ctf
+
+RUN cp -R /lib* /home/ctf && \
+    cp -R /usr/lib* /home/ctf
 
 RUN mkdir /home/ctf/dev && \
     mknod /home/ctf/dev/null c 1 3 && \
@@ -28,20 +25,14 @@ RUN mkdir /home/ctf/bin && \
 
 COPY ./ctf.xinetd /etc/xinetd.d/ctf
 COPY ./start.sh /start.sh
-# COPY ./catflag /home/ctf/bin/sh
-
-RUN touch /home/ctf/bin/pwn && \
-    chmod +x /home/ctf/bin/pwn
-# chmod +x /home/ctf/bin/sh
 RUN echo "Blocked by ctf_xinetd" > /etc/banner_fail
 
 RUN chmod +x /start.sh
 
 RUN chown -R root:ctf /home/ctf && \
-    chmod -R 750 /home/ctf
+    chmod -R 750 /home/ctf && \
+    chmod 740 /home/ctf/flag
 
-WORKDIR /home/ctf/bin
-
-ENTRYPOINT ["/start.sh"]
+CMD ["/start.sh"]
 
 EXPOSE 9999
