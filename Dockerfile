@@ -1,13 +1,14 @@
 FROM amd64/ubuntu:focal
 
-ENV DEBIAN_FRONTEND noninteractive
-ENV TV Asia/Shanghai
-RUN apt-get update && \
-    apt-get install -y tzdata
+# ENV DEBIAN_FRONTEND noninteractive
+# ENV TV Asia/Shanghai
+RUN apt-get update 
+# apt-get install -y tzdata
 # ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 # dpkg-reconfigure -f noninteractive tzdata
 
-RUN apt-get install -y lib32z1 xinetd vim curl inetutils-ping net-tools dnsutils
+RUN apt-get install -y lib32z1 xinetd
+#  vim curl inetutils-ping net-tools dnsutils
 
 RUN useradd -m ctf
 
