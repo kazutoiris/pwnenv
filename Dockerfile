@@ -2,7 +2,7 @@ FROM amd64/ubuntu:focal
 
 # ENV DEBIAN_FRONTEND noninteractive
 # ENV TV Asia/Shanghai
-RUN apt-get update && apt-get -y dist-upgrade && \
+RUN apt-get update && \
     apt-get install -y lib32z1 xinetd
 RUN useradd -m ctf
 
