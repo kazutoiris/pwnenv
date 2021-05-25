@@ -30,9 +30,10 @@ RUN echo "Blocked by ctf_xinetd" > /etc/banner_fail
 RUN chmod +x /start.sh
 
 RUN chown -R root:ctf /home/ctf && \
-    chmod -R 750 /home/ctf && \
-    chmod 740 /home/ctf/flag
+    chmod -R 750 /home/ctf
 
-CMD ["/start.sh"]
+# WORKDIR /home/ctf/bin
+
+ENTRYPOINT ["/start.sh"]
 
 EXPOSE 9999
