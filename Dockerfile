@@ -1,4 +1,4 @@
-FROM amd64/ubuntu:focal
+FROM amd64/ubuntu:bionic
 
 # ENV DEBIAN_FRONTEND noninteractive
 # ENV TV Asia/Shanghai
