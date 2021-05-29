@@ -23,11 +23,12 @@ RUN mkdir /home/ctf/dev && \
 
 RUN mkdir /home/ctf/bin && \
     cp /bin/ls /home/ctf/bin && \
-    cp /bin/cat /home/ctf/bin
+    cp /bin/cat /home/ctf/bin \
+    cp /bin/sh /home/ctf/bin
 
 COPY ./ctf.xinetd /etc/xinetd.d/ctf
 COPY ./start.sh /start.sh
-COPY ./catflag /home/ctf/bin/sh
+# COPY ./catflag /home/ctf/bin/sh
 
 RUN touch /home/ctf/bin/pwn && \
     chmod +x /home/ctf/bin/pwn && \
