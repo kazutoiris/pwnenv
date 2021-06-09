@@ -1,6 +1,7 @@
 FROM amd64/ubuntu:focal
 
-RUN apt-get install -y lib32z1 xinetd && \
+RUN apt-get update && \
+    apt-get install -y lib32z1 xinetd && \
     useradd -m ctf && \
     cp -dR /usr/lib* /home/ctf && \
     mkdir /home/ctf/dev && \
